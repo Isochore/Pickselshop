@@ -1,0 +1,109 @@
+.editorContainer {
+    display: flex;
+    background-color: #1e1f22;
+    height: 60%;
+    width:80%;
+    border-radius: 20px;
+}
+
+.editorMenu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80px;
+    height: 100%;
+    /* background-color: rgb(28, 28, 28); */
+    background-color: #191a1d;
+    border-radius: 20px 0px 0px 20px;
+}
+
+.editorButton {
+    width: 100%;
+    height: 50px;
+    background-color: #191a1d;
+    color: white;
+    border-radius: 0px;
+    position: relative;
+}
+
+.currentImage {
+    flex: 0 0 auto;
+    width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    height: auto;
+}
+
+.currentImageContainer {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.blackWhiteFilter {
+    filter: grayscale(100%);
+}
+
+.sepiaFilter {
+    filter: sepia(100%);
+}
+
+.resizeFigures {
+    background-color: #191a1d;
+    width: 180px;
+    height: 70px;
+    position: absolute;
+    z-index: 999;
+    top: 0;
+    left: 100%;
+}
+
+.resizeContainer {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.resizeInputContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+
+.resizeInput {
+    width: 50px;
+    height: 20px;
+}
+
+.resizeLabel {
+    font-size: 12px;
+    margin-bottom: 7px;
+}
+
+.resizeButtonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5px;
+}
+
+.resizeButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+}
+
+.objectFitContain {
+    object-fit: contain;
+}
+
+.objectFitInherit {
+    object-fit: inherit;
+}
