@@ -6,7 +6,7 @@ import EditIcon from '@mui/icons-material/Edit';
 const endpoint = 'http://localhost:5001';
 
 function App() {
-const [message, setMessage] = useState('');
+const [message, setMessage] = useState(false);
 const [imageList, setImageList] = useState([]);
 const [isRenamed, setIsRenamed] = useState(false);
 const [currentImage, setCurrentImage] = useState(undefined);
@@ -18,6 +18,7 @@ useEffect(() => {
   .then(response => response.json())
   .then(data => {
     setImageList(data)
+    console.log("🇷🇴", data);
   })
   .catch(error => console.error(error));
 }, [message, isRenamed])
@@ -76,7 +77,7 @@ const handleRename = (imageName) => {
     const file = fileInput.files[0];
 
     if (!file) {
-      return setMessage('Please select a file to upload');
+      return setMessage('Veuillez sélectionner un fichier');
     }
 
     const formData = new FormData();
@@ -93,17 +94,17 @@ const handleRename = (imageName) => {
         throw new Error('Failed to upload file');
       }
 
-      setMessage("success");
-      Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Téléversement réussi.',
-        showConfirmButton: false,
-        timer: 1500
-      })
+      setMessage(!message);
+    //   Swal.fire({
+    //     position: 'top-end',
+    //     icon: 'success',
+    //     title: 'Téléversement réussi.',
+    //     showConfirmButton: false,
+    //     timer: 1500
+    //   })
     } catch (error) {
       console.error(error);
-      setMessage("error");
+      setMessage(!message);
       Swal.fire({
         position: 'top-end',
         icon: 'error',
@@ -134,7 +135,7 @@ const handleRename = (imageName) => {
                 <div className="preview-container" key={imageName}>
                     <img className="image-preview" key={imageName} src={`${endpoint}/${imageName}`} onClick={() => handleEditorDisplay(imageName)} alt={imageName} />
                     <div className="preview-title-container">
-                        <p key={`${imageName}-name`}>{imageName}</p>
+                        <p title={imageName} key={`${imageName}-name`}>{imageName}</p>
                         <button className="rename-button" key={`${imageName}-button`} onClick={() => handleRename(imageName)}><EditIcon fontSize="small" /></button>
                     </div>
                 </div>
