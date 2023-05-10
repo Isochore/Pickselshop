@@ -5,6 +5,7 @@ const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
 const bodyParser = require('body-parser');
+const sharp = require('sharp');
 
 // Only allow image files
 const fileFilter = (req, file, cb) => {
@@ -87,3 +88,38 @@ app.get('/images', (req, res) => {
   } catch (error) {
     console.error(`Error starting server: ${error}`);
   }
+
+  // Apply black and white filter
+
+  app.post('/black-white/:filename', (req, res, next) => {
+    const filename = req.params.filename;
+    const inputImagePath = `uploads/${filename}`;
+  
+    fs.access(inputImagePath, fs.constants.F_OK, (error) => {
+      if (error) {
+        const error = new Error('Image not found');
+        error.status = 404;
+        return next(error);
+      }
+  
+      const tempOutputImagePath = `uploads/${filename}-temp`; // Temporary output file path
+  
+      // Apply black and white filter to the image and save as a temporary file
+      sharp(inputImagePath)
+        .grayscale()
+        .toFile(tempOutputImagePath, (error) => {
+          if (error) {
+            return next(error);
+          }
+  
+          // Replace the original file with the processed file
+          fs.rename(tempOutputImagePath, inputImagePath, (error) => {
+            if (error) {
+              return next(error);
+            }
+  
+            res.status(200).send('Black and white filter applied successfully');
+          });
+        });
+    });
+  });

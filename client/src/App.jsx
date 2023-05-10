@@ -6,6 +6,7 @@ import EditIcon from '@mui/icons-material/Edit';
 const endpoint = 'http://localhost:5001';
 
 function App() {
+const [selectedFile, setSelectedFile] = useState(null);
 const [message, setMessage] = useState(false);
 const [imageList, setImageList] = useState([]);
 const [isRenamed, setIsRenamed] = useState(false);
@@ -18,10 +19,17 @@ useEffect(() => {
   .then(response => response.json())
   .then(data => {
     setImageList(data)
-    console.log("🇷🇴", data);
   })
   .catch(error => console.error(error));
 }, [message, isRenamed])
+
+const updateMessage = () => {
+    setMessage(!message);
+};
+
+const handleFileInputChange = (event) => {
+    setSelectedFile(event.target.files[0]);
+};
 
 const handleRename = (imageName) => {
 
@@ -73,15 +81,13 @@ const handleRename = (imageName) => {
 
   async function handleUpload(event) {
     event.preventDefault();
-    const fileInput = document.getElementById('fileInput');
-    const file = fileInput.files[0];
 
-    if (!file) {
+    if (!selectedFile) {
       return setMessage('Veuillez sélectionner un fichier');
     }
 
     const formData = new FormData();
-    formData.append('image', file);
+    formData.append('image', selectedFile);
 
     try {
       const response = await fetch(`${endpoint}/upload`, {
@@ -122,7 +128,7 @@ const handleRename = (imageName) => {
   return (
     <div className="main-container">
         <form onSubmit={handleUpload}>
-            <input type="file" id="fileInput" />
+            <input type="file" onChange={handleFileInputChange} id="fileInput" />
             <button type="submit">Upload</button>
         </form>
         <div className="gallery-container">
@@ -143,7 +149,7 @@ const handleRename = (imageName) => {
             )}
         </section>
         </div>
-        <Editor currentImage={currentImage} />
+        <Editor currentImage={currentImage} updateMessage={updateMessage} />
     </div>
   );
 }
