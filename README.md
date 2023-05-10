@@ -8,4 +8,4 @@ To run the Vite build, in the client folder run the following command :
 
 ```npm run dev```
 
-Then you can access to the app at http://localhost:3000/.
+Then you can access the app at http://localhost:3000/.
