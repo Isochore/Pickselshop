@@ -101,13 +101,6 @@ const handleRename = (imageName) => {
       }
 
       setMessage(!message);
-    //   Swal.fire({
-    //     position: 'top-end',
-    //     icon: 'success',
-    //     title: 'Téléversement réussi.',
-    //     showConfirmButton: false,
-    //     timer: 1500
-    //   })
     } catch (error) {
       console.error(error);
       setMessage(!message);
