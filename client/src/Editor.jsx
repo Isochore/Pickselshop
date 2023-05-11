@@ -1,13 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
 import classes from './styles/editor.module.css';
-import AspectRatioIcon from '@mui/icons-material/AspectRatio';
-import CropIcon from '@mui/icons-material/Crop';
-import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
-import SaveIcon from '@mui/icons-material/Save';
-import DownloadIcon from '@mui/icons-material/Download';
-import FilterBAndWIcon from '@mui/icons-material/FilterBAndW';
-import DoneIcon from '@mui/icons-material/Done';
 
 const endpoint = 'http://localhost:5001';
 
@@ -92,9 +85,9 @@ function Editor(props) {
     return (
         <div className={classes.editorContainer}>
             <div className={classes.editorMenu}>
-                <button title="Rogner" className={classes.editorButton}><CropIcon /></button>
+                <button title="Rogner" className={classes.editorButton}><span className="material-symbols-outlined">crop</span></button>
                 <div className={classes.resizeContainer}>
-                    <button title="Redimensionner" className={classes.editorButton} onClick={() => handleResize()}><AspectRatioIcon /></button>
+                    <button title="Redimensionner" className={classes.editorButton} onClick={() => handleResize()}><span className="material-symbols-outlined">aspect_ratio</span></button>
                     <div className={classes.resizeFigures} style={{visibility: isVisible ? 'visible' : 'hidden', display: isVisible ? 'flex' : 'none'}}>
                         <div className={classes.resizeInputContainer}>
                             <span className={classes.resizeLabel}>Largeur :</span>
@@ -106,15 +99,15 @@ function Editor(props) {
                         </div>
                         <div className={classes.resizeButtonContainer}>
                             <button className={classes.resizeButton} onClick={() => handleResizeValidation()} >
-                                <DoneIcon />
+                                <span className="material-symbols-outlined">done</span>
                             </button>
                         </div>
                     </div>
                 </div>
-                <button title="Noir et blanc" className={classes.editorButton} onClick={() => handleFilter('blackWhite')}><FilterBAndWIcon /></button>
-                <button title="Sepia" className={classes.editorButton} onClick={() => handleFilter('sepia')}><AutoAwesomeIcon /></button>
-                <button title="Enregistrer" className={classes.editorButton}><SaveIcon /></button>
-                <button title="Télécharger" className={classes.editorButton}><DownloadIcon /></button>
+                <button title="Noir et blanc" className={classes.editorButton} onClick={() => handleFilter('blackWhite')}><span className="material-symbols-outlined">filter_b_and_w</span></button>
+                <button title="Sepia" className={classes.editorButton} onClick={() => handleFilter('sepia')}><span className="material-symbols-outlined">auto_awesome</span></button>
+                <button title="Enregistrer" className={classes.editorButton} onClick={() => handleSave()} ><span className="material-symbols-outlined">save</span></button>
+                <button title="Télécharger" className={classes.editorButton}><span className="material-symbols-outlined">download</span></button>
             </div>
             <div className={classes.currentImageContainer}>
                 {(typeof props.currentImage === 'undefined') ? (<p>Pas d'image sélectionnée</p>) : (<img className={`${classes.currentImage} ${filterType} ${isObjectFit}`} style={confirmedResizeValues.width === 0 ? { width: confirmedResizeValues.width >  confirmedResizeValues.height ? '90%' : 90 * confirmedResizeValues.width / confirmedResizeValues.height + '%', height: confirmedResizeValues.height >  confirmedResizeValues.width ? '90%' : 90 * (confirmedResizeValues.height / confirmedResizeValues.width) + '%'} : {width: '90%'}} src={`http://localhost:5001/${props.currentImage}`} alt={props.currentImage} />)}

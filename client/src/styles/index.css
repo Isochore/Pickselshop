@@ -79,6 +79,10 @@ button:focus-visible {
   }
 }
 
+.edit-button {
+    font-size: 16px;
+}
+
 .main-container {
     display: flex;
     flex-direction: column;

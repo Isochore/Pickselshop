@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
 import Editor from './Editor.jsx';
-import EditIcon from '@mui/icons-material/Edit';
+// import EditIcon from '@mui/icons-material/Edit';
 
 const endpoint = 'http://localhost:5001';
 
@@ -142,7 +142,7 @@ const handleRename = (imageName) => {
                     <img className="image-preview" key={imageName} src={`${endpoint}/${imageName}`} onClick={() => handleEditorDisplay(imageName)} alt={imageName} />
                     <div className="preview-title-container">
                         <p title={imageName} key={`${imageName}-name`}>{imageName}</p>
-                        <button className="rename-button" key={`${imageName}-button`} onClick={() => handleRename(imageName)}><EditIcon fontSize="small" /></button>
+                        <button className="rename-button" key={`${imageName}-button`} onClick={() => handleRename(imageName)}><span className="material-symbols-outlined edit-button">edit</span></button>
                     </div>
                 </div>
             ))
