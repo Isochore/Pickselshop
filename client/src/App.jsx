@@ -34,7 +34,7 @@ const handleFileInputChange = (event) => {
 const handleRename = (imageName) => {
 
     Swal.fire({
-        title: 'Nouveau nom du fichier',
+        title: 'Type the new name',
         input: 'text',
         inputAttributes: {
           autocapitalize: 'off'
@@ -71,7 +71,7 @@ const handleRename = (imageName) => {
             setIsRenamed(!isRenamed);
           Swal.fire({
             icon: 'success',
-            title: `Image renommée avec succès`,
+            title: `Image successfully renamed`,
             showConfirmButton: false,
             timer: 1500
           })
@@ -114,7 +114,7 @@ const handleRename = (imageName) => {
       Swal.fire({
         position: 'top-end',
         icon: 'error',
-        title: "Le téléversement a échoué, assurez-vous de n'envoyer que des images.",
+        title: "Upload failed, make sure to only send images.",
         showConfirmButton: false,
         timer: 2000
       })
@@ -135,7 +135,7 @@ const handleRename = (imageName) => {
 
         <section className="gallery">
             {(typeof imageList.images === 'undefined') ? (
-                <p>Chargement...</p>
+                <p>Loading...</p>
             ): (
             imageList.images.map((imageName) => (
                 <div className="preview-container" key={imageName}>

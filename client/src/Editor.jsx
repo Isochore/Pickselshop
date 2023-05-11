@@ -90,11 +90,11 @@ function Editor(props) {
                     <button title="Redimensionner" className={classes.editorButton} onClick={() => handleResize()}><span className="material-symbols-outlined">aspect_ratio</span></button>
                     <div className={classes.resizeFigures} style={{visibility: isVisible ? 'visible' : 'hidden', display: isVisible ? 'flex' : 'none'}}>
                         <div className={classes.resizeInputContainer}>
-                            <span className={classes.resizeLabel}>Largeur :</span>
+                            <span className={classes.resizeLabel}>Width :</span>
                             <input name="width" className={classes.resizeInput} value={resizeValues.width} onChange={handleResizeChange} min="0" type="number" />
                         </div>
                         <div className={classes.resizeInputContainer}>
-                            <span className={classes.resizeLabel}>Hauteur :</span>
+                            <span className={classes.resizeLabel}>Height :</span>
                             <input name="height" className={classes.resizeInput} value={resizeValues.height} onChange={handleResizeChange} min="0" type="number" />
                         </div>
                         <div className={classes.resizeButtonContainer}>
@@ -110,7 +110,7 @@ function Editor(props) {
                 <button title="Télécharger" className={classes.editorButton}><span className="material-symbols-outlined">download</span></button>
             </div>
             <div className={classes.currentImageContainer}>
-                {(typeof props.currentImage === 'undefined') ? (<p>Pas d'image sélectionnée</p>) : (<img className={`${classes.currentImage} ${filterType} ${isObjectFit}`} style={confirmedResizeValues.width === 0 ? { width: confirmedResizeValues.width >  confirmedResizeValues.height ? '90%' : 90 * confirmedResizeValues.width / confirmedResizeValues.height + '%', height: confirmedResizeValues.height >  confirmedResizeValues.width ? '90%' : 90 * (confirmedResizeValues.height / confirmedResizeValues.width) + '%'} : {width: '90%'}} src={`http://localhost:5001/${props.currentImage}`} alt={props.currentImage} />)}
+                {(typeof props.currentImage === 'undefined') ? (<p>No image selected.</p>) : (<img className={`${classes.currentImage} ${filterType} ${isObjectFit}`} style={confirmedResizeValues.width === 0 ? { width: confirmedResizeValues.width >  confirmedResizeValues.height ? '90%' : 90 * confirmedResizeValues.width / confirmedResizeValues.height + '%', height: confirmedResizeValues.height >  confirmedResizeValues.width ? '90%' : 90 * (confirmedResizeValues.height / confirmedResizeValues.width) + '%'} : {width: '90%'}} src={`http://localhost:5001/${props.currentImage}`} alt={props.currentImage} />)}
             </div>
         </div>
     );
